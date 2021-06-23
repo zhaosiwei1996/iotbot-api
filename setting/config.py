@@ -25,7 +25,7 @@ elif platform.system().lower() == 'linux':
     dbpassword = os.environ.get('DB_PASSWORD'),
     dbhost = os.environ.get('DB_HOST'),
     dbport = os.environ.get('DB_PORT'),
-    db_url = 'mysql://'+dbuser+dbpassword+'@'+dbhost+':'+dbport+'/'+dbname
+    db_url = 'mysql://%s:%s@%s:%s/%s'%(dbuser,dbpassword,dbhost,dbport,dbname)
     uvicorn_host = os.environ.get('UVICRON_HOST')
     uvicorn_port = os.environ.get('UVICRON_PORT')
     uvicorn_reload = False
