@@ -20,11 +20,11 @@ if platform.system().lower() == 'windows':
     logging_level=logging.DEBUG
 
 elif platform.system().lower() == 'linux':
-    dbname =  os.environ.get('DB_NAME'),
-    dbuser =  os.environ.get('DB_USERNAME'),
-    dbpassword = os.environ.get('DB_PASSWORD'),
-    dbhost = os.environ.get('DB_HOST'),
-    dbport = int(os.environ.get('DB_PORT')),
+    dbname =  os.environ.get('DB_NAME')
+    dbuser =  os.environ.get('DB_USERNAME')
+    dbpassword = os.environ.get('DB_PASSWORD')
+    dbhost = os.environ.get('DB_HOST')
+    dbport = os.environ.get('DB_PORT')
     db_url = 'mysql://%s:%s@%s:%s/%s'%(dbuser,dbpassword,dbhost,dbport,dbname)
     uvicorn_host = os.environ.get('UVICRON_HOST')
     uvicorn_port = int(os.environ.get('UVICRON_PORT'))
