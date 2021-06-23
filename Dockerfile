@@ -7,4 +7,5 @@ ADD libs libs
 ADD requirements.txt requirements.txt
 RUN ls -al
 RUN pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN rm -rf ~/.cache/pip
 ENTRYPOINT python iotbot-api.py
