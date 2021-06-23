@@ -24,10 +24,10 @@ elif platform.system().lower() == 'linux':
     dbuser =  os.environ.get('DB_USERNAME'),
     dbpassword = os.environ.get('DB_PASSWORD'),
     dbhost = os.environ.get('DB_HOST'),
-    dbport = os.environ.get('DB_PORT'),
+    dbport = int(os.environ.get('DB_PORT')),
     db_url = 'mysql://%s:%s@%s:%s/%s'%(dbuser,dbpassword,dbhost,dbport,dbname)
     uvicorn_host = os.environ.get('UVICRON_HOST')
-    uvicorn_port = os.environ.get('UVICRON_PORT')
+    uvicorn_port = int(os.environ.get('UVICRON_PORT'))
     uvicorn_reload = False
     if os.environ.get('UVICRON_DEBUG')=='on':
         uvicorn_debug = True
