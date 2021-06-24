@@ -24,5 +24,5 @@ def check_token(token):
 def sendjson(httpcode, msg, data):
     resp = {"rescode": httpcode, "msg": msg,
             'timestamp': time.time(), "data": data}
-    logging.info("sendjson:%s" % resp)
+    logging.debug("sendjson:%s" % resp)
     return JSONResponse(status_code=httpcode, content=resp)
