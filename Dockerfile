@@ -1,4 +1,4 @@
-FROM iotcore-cn-north-1.jcr.service.jdcloud.com/baseimage/python3:latest
+FROM iotcore-cn-north-1.jcr.service.jdcloud.com/baseimage/pyston3:latest
 RUN mkdir -p /export/servers/iotbot-api
 WORKDIR /export/servers/iotbot-api
 ADD main.py main.py 
