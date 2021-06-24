@@ -4,15 +4,15 @@
 ```
 运行环境:Python3.9.6
 $ pip install -r requirements.txt
-$ python3 iotbot-api.py
+$ python3 main.py
 ```
 ### 容器部署:
 docker-compose.yaml
 ```
 version: '3.3'
 services:
-  iotbot-data:
-    container_name: iotbot-data
+  iotbot-api:
+    container_name: iotbot-api
     image: iotcore-cn-north-1.jcr.service.jdcloud.com/iotbot/iotbot-api:xx
     environment:
       - DB_NAME=xxxxxx

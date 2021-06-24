@@ -42,16 +42,6 @@ class IotbotSyncConfigs(Model):
     class Meta:
         table = 'iotbot_sync_configs'
 
-class IotbotUserList(Model):
-    user_name = fields.CharField(max_length=100)
-    user_fullname = fields.CharField(max_length=100)
-    user_password = fields.CharField(max_length=100)
-    create_time = fields.DatetimeField()
-    update_time = fields.DatetimeField()
-
-    class Meta:
-        table = 'iotbot_user_list'
-
 class IotbotApiUserList(Model):
     username = fields.CharField(max_length=100)
     userfullname = fields.CharField(max_length=100)
