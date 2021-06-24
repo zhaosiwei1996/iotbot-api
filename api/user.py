@@ -16,7 +16,7 @@ router = APIRouter()
 @router.post("/api/user", name="用户登录获取token", description="使用erp账号登陆并获取token", response_model=generalresp)
 async def userlogin(receive: userlogin):
     tojson = jsonable_encoder(receive)
-    logging.info('post receive:/api/user json:%s' % tojson)
+    logging.debug('post receive:/api/user json:%s' % tojson)
     jdssocheck = json.loads(requests.post(
         url=config.jdsso, data=tojson).text)
     logging.info('sso resp:%s' % jdssocheck)

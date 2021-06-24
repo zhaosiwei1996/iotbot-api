@@ -12,7 +12,7 @@ def check_token(token):
         usertoken = Serializer(
             config.SECRET_KEY, config.ACCESS_TOKEN_EXPIRE_MINUTES).loads(token)
     except Exception as ex:
-        logging.debug('token校验失败,%s' % ex)
+        logging.error('token校验失败,%s' % ex)
         return False
     else:
         logging.debug('token校验成功,%s' % usertoken)

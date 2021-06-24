@@ -11,7 +11,7 @@ router = APIRouter()
 
 @router.get("/api/host/proxy", name="获取服务器代理数据", description="获取服务器代理数据(分页接口)", response_model=generalresp)
 async def gethostpyoxylist(page: int, size: int, hostid: str = None, Authorization: str = Header(None)):
-    logging.info("get receive:/api/host/proxy?hostid=%s&page=%s&size=%s"%(hostid,page,size))
+    logging.debug("get receive:/api/host/proxy?hostid=%s&page=%s&size=%s"%(hostid,page,size))
     if utils.check_token(Authorization):
         if hostid != '':
             return utils.sendjson(200, 'success', jsonable_encoder(await models.IotbotProxyTcpConfigs.filter(hostid=hostid)))
@@ -30,7 +30,7 @@ async def gethostpyoxylist(page: int, size: int, hostid: str = None, Authorizati
 # 获取主机代理信息(获取所有)
 @router.get("/api/host/proxy/all", name="获取所有服务器代理数据", description="获取所有服务器代理数据", response_model=generalresp)
 async def gethostlistall(Authorization: str = Header(None)):
-    logging.info("get receive:/api/host/proxy/all")
+    logging.debug("get receive:/api/host/proxy/all")
     if utils.check_token(Authorization):
         return utils.sendjson(200, 'success', jsonable_encoder(await models.IotbotProxyTcpConfigs.all().order_by('-serverport')))
     else:
@@ -42,7 +42,7 @@ async def gethostlistall(Authorization: str = Header(None)):
 @router.put("/api/host/proxy", name="添加服务器代理数据", description="添加服务器代理数据", response_model=generalresp)
 async def puthostpyoxylist(receive: addserverproxy, Authorization: str = Header(None)):
     tojson = jsonable_encoder(receive)
-    logging.info("put receive:/api/host/proxy json:%s"%tojson)
+    logging.debug("put receive:/api/host/proxy json:%s"%tojson)
     if utils.check_token(Authorization):
         try:
             # 查询是否存在的hostid
