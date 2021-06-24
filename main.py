@@ -14,4 +14,4 @@ app.include_router(router=hostserver.router)
 app.include_router(router=hostproxy.router)
 
 if __name__ == '__main__':
-    uvicorn.run(app='main:app', loop=config.uvicron_loop, host=config.uvicorn_host, port=config.uvicorn_port, reload=config.uvicorn_reload, debug=config.uvicorn_debug, workers=int(multiprocessing.cpu_count()))
+    uvicorn.run(app='main:app', http='httptools', loop=config.uvicron_loop, host=config.uvicorn_host, port=config.uvicorn_port, reload=config.uvicorn_reload, debug=config.uvicorn_debug, workers=int(multiprocessing.cpu_count()))
