@@ -6,19 +6,26 @@ import logging
 
 router = APIRouter()
 
+
 # 主机列表(分页接口)
 
 
 @router.get("/api/host/server", name="获取服务器数据", description="获取服务器数据(分页接口)", response_model=generalresp)
-async def gethostlist(page: int, size: int, hostid: str = None, localip: str = None, Authorization: str = Header(None)):
-    logging.debug("get receive:/api/host/server?hostid=%s&localip=%s&page=%s&size=%s"%(hostid,localip,page,size))
+async def gethostlist(page: int, size: int, hostid: str = None, ip: str = None, Authorization: str = Header(None)):
+    logging.debug("get receive:/api/host/server?hostid=%s&ip=%s&page=%s&size=%s"%(hostid,ip,page,size))
     if utils.check_token(Authorization):
         if hostid != '':
             return utils.sendjson(200, 'success', jsonable_encoder(await models.IotbotHeartbeats.filter(hostid=hostid)))
-        elif localip != '':
-            return utils.sendjson(200, 'success', jsonable_encoder(await models.IotbotHeartbeats.filter(localip=localip)))
-        elif hostid or localip != '':
-            return utils.sendjson(200, 'success', jsonable_encoder(await models.IotbotHeartbeats.filter(hostid=hostid, localip=localip)))
+        elif ip != '':
+            queryip = jsonable_encoder(await models.IotbotHeartbeats.filter(localip=ip))
+            if queryip==[]:
+                queryip = jsonable_encoder(await models.IotbotHeartbeats.filter(publicip=ip))
+            return utils.sendjson(200, 'success', queryip)
+        elif hostid or ip != '':
+            queryip = jsonable_encoder(await models.IotbotHeartbeats.filter(localip=ip))
+            if queryip==[]:
+                queryip = jsonable_encoder(await models.IotbotHeartbeats.filter(publicip=ip))
+            return utils.sendjson(200, 'success', queryip)
         else:
             try:
                 datacount = await models.IotbotHeartbeats.all().count()
