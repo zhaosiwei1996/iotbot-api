@@ -1,4 +1,4 @@
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from itsdangerous import TimestampSigner as Serializer
 from fastapi.responses import JSONResponse
 from setting import config
 import logging

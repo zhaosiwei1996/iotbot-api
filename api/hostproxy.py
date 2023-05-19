@@ -50,7 +50,7 @@ async def puthostpyoxylist(receive: addserverproxy, Authorization: str = Header(
         except Exception as ex:
             try:
                 # 查找最后一条serverport并+1,实现端口不重复
-                selectport = await models.IotbotProxyTcpConfigs.all().order_by('-serverport').limit(1)
+                selectport = await models.IotbotProxyTcpConfigs.all().order_by('-serverport').limit(1) 
                 for port in jsonable_encoder(selectport):
                     portadd = int(port['serverport'])+1
                 await models.IotbotProxyTcpConfigs.create(hostid=tojson['hostid'], proxyname=tojson['proxyname'], targetaddr=tojson['proxyip'], serverport=portadd, mark=tojson['mark'], active=tojson['active'])

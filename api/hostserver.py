@@ -11,7 +11,7 @@ router = APIRouter()
 
 @router.get("/api/host/server", name="获取服务器数据", description="获取服务器数据(分页接口)", response_model=generalresp)
 async def gethostlist(page: int, size: int, hostid: str = None, localip: str = None, Authorization: str = Header(None)):
-    logging.info("get receive:/api/host/server?hostid=%s&localip=%s&page=%s&size=%s"%(hostid,localip,page,size))
+    logging.info("get receive:/api/host/server?hostid=%s&localip=%s&page=%s&size=%s"%(hostid,localip,page,size))                                                
     if utils.check_token(Authorization):
         if hostid != '':
             return utils.sendjson(200, 'success', jsonable_encoder(await models.IotbotHeartbeats.filter(hostid=hostid)))
@@ -43,7 +43,7 @@ async def gethostlistall(Authorization: str = Header(None)):
 
 # 主机修改
 
-
+    
 @router.put("/api/host/server", name="修改服务器数据", description="修改服务器数据", response_model=generalresp)
 async def puthostlist(receive: updateserver, Authorization: str = Header(None)):
     tojson = jsonable_encoder(receive)

@@ -25,8 +25,7 @@ elif platform.system().lower() == 'linux':
     dbpassword = os.environ.get('DB_PASSWORD')
     dbhost = os.environ.get('DB_HOST')
     dbport = os.environ.get('DB_PORT')
-    db_url = 'mysql://%s:%s@%s:%s/%s' % (dbuser,
-                                         dbpassword, dbhost, dbport, dbname)
+    db_url = 'mysql://%s:%s@%s:%s/%s' % (dbuser, dbpassword, dbhost, dbport, dbname)
     uvicorn_host = os.environ.get('UVICRON_HOST')
     uvicorn_port = int(os.environ.get('UVICRON_PORT'))
     uvicorn_reload = False
@@ -39,6 +38,5 @@ elif platform.system().lower() == 'linux':
     else:
         logging_level = logging.INFO
 
-logging.basicConfig(level=logging_level,
-                    format='[%(levelname)s] %(asctime)s [%(funcName)s] %(message)s')
+logging.basicConfig(level=logging_level, format='[%(levelname)s] %(asctime)s [%(funcName)s] %(message)s')
 logger = logging.getLogger(__name__)

@@ -1,4 +1,4 @@
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from itsdangerous import TimestampSigner as Serializer
 from fastapi.encoders import jsonable_encoder
 from fastapi import APIRouter
 from api.apidoc import *
@@ -12,6 +12,9 @@ router = APIRouter()
 
 # 用户登录
 
+@router.get("/")
+async def testapi():
+    return utils.sendjson(200,"hello world",[])
 
 @router.post("/api/user", name="用户登录获取token", description="使用erp账号登陆并获取token", response_model=generalresp)
 async def userlogin(receive: userlogin):
